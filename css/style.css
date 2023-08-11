@@ -1,0 +1,326 @@
+/* ? Codifica caratteri del foglio di stile */
+@charset "UTF-8";
+/* ? Incorporare font da google https://fonts.google.com/ */
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap'); /* TODO @import -> direttiva css */
+/* Import css icon */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css');
+
+/* ! background-color: red; color: blue; ecc... sono tutte proprietà */
+
+/*
+    TODO Tramite ROOT credo delle variabili di colori da insere nel foglio di stile
+*/
+:root{
+    --bg-gray: #444444;
+    --red: #e5005b;
+    --blue: #008ecf;
+    --orange: #ee7601;
+    --green: #00a559;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Dosis', sans-serif;/* Abbreviazione ffa */
+    background-color:var(--bg-gray); /* Abbreviazione bgc */
+    margin: 0; /* Azzera tutti i margini presenti nel body */
+}
+
+.active{
+    color: var(--red) !important;
+}
+
+.t-center{
+    text-align: center;
+}
+.t-bold{
+    font-weight: bold;
+}
+.color-white{
+    color: white;
+}
+
+.color-m{
+    color: var(--red);
+}
+.color-i{
+    color: var(--blue);
+}
+.color-n{
+    color: var(--orange);
+}
+.color-d{
+    color: var(--green);
+}
+
+
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: white; /* Abbreviazione color */
+    font-size: 80px; /* Abbrevizione fz20 */
+    margin-top: 0; /* Abbrevizione mt[specifica numero di pixel] */
+    margin-bottom: 0; /* Abbreviazione mb[specifica numero di pixel] */
+    padding: 20px;
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 20px;
+    text-transform: uppercase;/* Abbreviazione ttu [ verrà comunque indicizzato come scritto nell'html ] */
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+strong {
+    /* 
+        Abbreviazione fw valori da [100 - 900]
+        ? 900 bolder
+        ? 700 bold
+        ? 400 normal
+    */
+    font-weight: 400;
+    color: var(--red);
+}
+
+em {
+    color: var(--green);
+    font-style: normal;/* Abbreviazione fs non usa volor numerici */
+}
+
+
+a{
+    text-decoration: none;/* Abbreviazione tdn */
+}
+
+
+
+/*************************************************
+        INIZIO STILE HEADER DELLE PAGINE
+*************************************************/
+
+header#site-header{
+    height: 50vh;/* Abbreviazione h[numero altezza] */
+    background-image: url(../images/library.jpg);/* Abbreviazione bgi [ Le immagini di sfondo non vengono indicizzate ] */
+    background-repeat: no-repeat;/* Abbreviazione bgrn */
+    background-position: center;/* Abbreviazione bgp */
+    background-size: cover;/* Abbreviazione bgs */
+    display: flex;/* Abbreviazione df [display: flex] */
+    flex-wrap: wrap;/* Abbreviazione flw [se gli elementi non ci stanno nella stessa riga vanno a capo] */
+    justify-content: center;/* Abbreviazione jc[parametro in lista] - jcc : justify-content: center */
+    align-items: center;/* Abbreviazione ai[parametro in lista] align-items: center */
+}
+
+nav#main-navigation{
+    background-color: rgba(0, 0, 0, .8);/* Possono essere scritta da 3 a 6 zeri [0 - f] colore a 24bit */
+    width: 100%;/* Abbreviazione w10p */
+    display: flex;
+    justify-content: space-between;/* Abbreviazione jcsb [ Tutti gli elementi in base alla loro lunghezza verranno distribuiti ] */
+    padding: 20px;/* Abbreviazione p20 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+nav#main-navigation ul{
+    list-style-type: none;/* Abbreviazione lstn */
+    display: flex;
+    height: 48px;/* Abbreviazione h48 */
+    justify-content: flex-end;
+    align-items: center;
+}
+nav#main-navigation ul li{
+    margin-left: 20px;
+}
+nav#main-navigation ul li a{
+    display: block;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    transition: all .3s ease;
+}
+nav#main-navigation ul li a:hover{
+    color: var(--red);
+    transform: scale(1.1);
+}
+
+.navbar-logo{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 32px;
+}
+
+#page-content{ /* ? Stile globale per il tag main */
+    padding: 50px;
+}
+
+
+
+/*************************************************
+        INIZIO STILE PAGINA INDEX.HTML
+                    +
+            STILE LISTA LIBRI
+*************************************************/
+section#recents h2{
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+div.book-list{
+    display: flex;
+    justify-content: space-between;    
+    flex-wrap: wrap;
+}
+div.book-list article.book{
+    width: 300px;
+    height: 420px;
+    box-shadow: 5px 5px 20px #000;
+    position: relative;
+    perspective: 1000px;/* Ci permette di applicare al nostro contenitore un effetto di tridimensionalità 3D */
+    cursor: pointer;
+    margin: 0 20px 80px 20px;
+}
+
+/* ! COPERTINA ESTERNA DEL LIBRO */
+
+div.book-list article.book div.front{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    transform-style: preserve-3d;
+    transform: rotateY(-25deg);
+    transform-origin: left center;
+    position: absolute;
+    z-index: 2;
+    transition: transform 1s ease;
+    backface-visibility: hidden;
+}
+div.book-list article.book:hover div.front{
+    transform: rotateY(-95deg);
+}
+div.book-list article.book div.front img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+/* ! COPERTINA INTERNA DEL LIBRO */
+div.book-list article.book div.front-in{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    transform-style: preserve-3d;
+    transform: rotateY(-25deg);
+    transform-origin: left center;
+    position: absolute;
+    z-index: 2;
+    transition: transform 1s ease;
+
+}
+div.book-list article.book:hover div.front-in{
+    transform: rotateY(-95deg);
+}
+
+div.book-list article.book div.front-in div#page_one{
+    background-color: #7884b2;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+div.book-list article.book div.front-in div#page_two{
+    background-color: #20adb6;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+div.book-list article.book div.front-in div#page_three{
+    background-color: #d3d908;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+
+/* ? CONTENUTO LIBRO */
+div.book-list article.book .back{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #fff;
+    color: #444;
+    padding: 20px;
+}
+
+
+
+/*************************************************
+        INIZIO STILE PAGINA LOGIN.HTML
+*************************************************/
+
+main#page-content h2#accedi{
+    font-family: 'Montserrat', sans-serif;
+}
+
+main#page-content form#login{
+    color: #fff;
+    max-width: 430px;
+    background-color: var(--orange);
+    margin: 25px auto 0 auto;
+    border-radius: 21px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main#page-content form#login input[type=text],input[type=password],button[type=submit]{
+    width: 60%;
+    padding: 12px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+}
+
+main#page-content form#login label[for=username], label[for=password]{
+    font-size: 30px;
+}
+
+main#page-content form#login input[type=text],input[type=password]{
+    color: var(--orange);
+    background-color: rgba(255, 255, 255, 0.7);
+    transition: background-color .5s ease;
+}
+
+main#page-content form#login input[type=text]:focus,input[type=password]:focus{
+    background-color: #fff;
+}
+
+main#page-content form#login button[type=submit]{
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 20px;
+    transition: all .5s ease;
+}
+
+main#page-content form#login button[type=submit]:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 
+                0 17px 50px 0 rgba(0,0,0,0.19);
+    color: var(--green);
+}
